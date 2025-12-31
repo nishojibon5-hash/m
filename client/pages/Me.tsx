@@ -1,21 +1,68 @@
 import MainLayout from "@/components/MainLayout";
-import { User, LogOut } from "lucide-react";
+import { User, LogOut, Edit2 } from "lucide-react";
+import { useAuth } from "@/lib/authContext";
+import { getVideosByCreator } from "@/lib/googleDriveIntegration";
 
 export default function Me() {
+  const { user, logout } = useAuth();
+  const userVideos = user ? getVideosByCreator(user.id) : [];
+
+  if (!user) {
+    return (
+      <MainLayout>
+        <div className="flex items-center justify-center h-96">
+          <p className="text-muted-foreground">Loading...</p>
+        </div>
+      </MainLayout>
+    );
+  }
+
   return (
     <MainLayout>
-      <div className="w-full max-w-2xl mx-auto px-4 py-6 md:py-8">
+      <div className="w-full max-w-4xl mx-auto px-4 py-6 md:py-8">
         {/* Profile Header */}
         <div className="bg-card rounded-lg p-6 mb-6">
-          <div className="flex items-center gap-4 mb-4">
-            <img
-              src="https://i.pravatar.cc/80?img=0"
-              alt="profile"
-              className="w-20 h-20 rounded-full object-cover"
-            />
-            <div className="flex-1">
-              <h1 className="text-2xl font-bold text-foreground mb-1">Your Account</h1>
-              <p className="text-muted-foreground">Device-tracked authentication enabled</p>
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-4">
+              <img
+                src={user.avatar}
+                alt={user.username}
+                className="w-20 h-20 rounded-full object-cover"
+              />
+              <div className="flex-1">
+                <h1 className="text-2xl font-bold text-foreground mb-1">
+                  {user.username}
+                </h1>
+                <p className="text-muted-foreground text-sm mb-2">
+                  Device ID: {user.deviceId.substring(0, 8)}...
+                </p>
+                <p className="text-muted-foreground text-sm">
+                  Member since {new Date(user.createdAt).toLocaleDateString()}
+                </p>
+              </div>
+            </div>
+            <button className="p-2 rounded-full bg-primary bg-opacity-10 text-primary hover:bg-opacity-20 transition-colors">
+              <Edit2 className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* Stats */}
+          <div className="grid grid-cols-3 gap-4 pt-6 border-t border-border">
+            <div className="text-center">
+              <p className="text-2xl font-bold text-primary">{userVideos.length}</p>
+              <p className="text-muted-foreground text-sm">Videos</p>
+            </div>
+            <div className="text-center">
+              <p className="text-2xl font-bold text-primary">
+                {(userVideos.reduce((acc, v) => acc + v.views, 0) / 1000).toFixed(0)}K
+              </p>
+              <p className="text-muted-foreground text-sm">Total Views</p>
+            </div>
+            <div className="text-center">
+              <p className="text-2xl font-bold text-primary">
+                {(userVideos.reduce((acc, v) => acc + v.likes, 0) / 1000).toFixed(0)}K
+              </p>
+              <p className="text-muted-foreground text-sm">Total Likes</p>
             </div>
           </div>
         </div>
