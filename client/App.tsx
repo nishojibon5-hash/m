@@ -13,6 +13,7 @@ import Upload from "./pages/Upload";
 import Chats from "./pages/Chats";
 import Me from "./pages/Me";
 import Watch from "./pages/Watch";
+import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
