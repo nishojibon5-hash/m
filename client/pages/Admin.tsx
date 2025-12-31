@@ -26,8 +26,9 @@ export default function Admin() {
   const [activeTab, setActiveTab] = useState<AdminTab>("overview");
   const allVideos = getAllVideoMetadata();
 
-  // Check if user is admin (for now, only the owner can access)
-  const isAdmin = user?.id === "admin" || user?.username?.includes("admin");
+  // Check if user is admin (first user is admin)
+  const adminUserId = localStorage.getItem("admin_user_id");
+  const isAdmin = user?.id === adminUserId || user?.id === "admin";
 
   if (!isAdmin && user?.id !== localStorage.getItem("admin_user_id")) {
     return (
