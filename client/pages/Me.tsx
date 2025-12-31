@@ -67,28 +67,75 @@ export default function Me() {
           </div>
         </div>
 
-        {/* Profile Sections */}
-        <div className="space-y-4">
-          <div className="bg-card rounded-lg p-4 hover:bg-opacity-80 cursor-pointer transition-colors">
-            <p className="text-foreground font-medium">My Videos</p>
-            <p className="text-muted-foreground text-sm">View and manage your uploaded content</p>
-          </div>
-          <div className="bg-card rounded-lg p-4 hover:bg-opacity-80 cursor-pointer transition-colors">
-            <p className="text-foreground font-medium">Following</p>
-            <p className="text-muted-foreground text-sm">Creators you follow</p>
-          </div>
-          <div className="bg-card rounded-lg p-4 hover:bg-opacity-80 cursor-pointer transition-colors">
-            <p className="text-foreground font-medium">Liked Videos</p>
-            <p className="text-muted-foreground text-sm">Videos you've liked</p>
-          </div>
-          <div className="bg-card rounded-lg p-4 hover:bg-opacity-80 cursor-pointer transition-colors">
-            <p className="text-foreground font-medium">Settings</p>
-            <p className="text-muted-foreground text-sm">Account settings and preferences</p>
+        {/* My Videos Section */}
+        <div className="mb-8">
+          <h2 className="text-xl font-bold text-foreground mb-4">My Videos</h2>
+          {userVideos.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {userVideos.map((video) => (
+                <div key={video.id} className="bg-card rounded-lg overflow-hidden hover:ring-2 hover:ring-primary transition-all">
+                  <div className="relative aspect-video">
+                    <img
+                      src={video.thumbnail}
+                      alt={video.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute top-2 right-2 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded">
+                      {video.format === "long" && "Long"}
+                      {video.format === "short" && "Short"}
+                      {video.format === "photo_text" && "Photo+Text"}
+                    </div>
+                  </div>
+                  <div className="p-3">
+                    <h3 className="font-semibold text-foreground text-sm line-clamp-2 mb-2">
+                      {video.title}
+                    </h3>
+                    <div className="flex items-center justify-between text-xs text-muted-foreground">
+                      <span>{(video.views / 1000).toFixed(0)}K views</span>
+                      <span>{(video.likes / 1000).toFixed(0)}K likes</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="bg-card rounded-lg p-8 text-center">
+              <p className="text-muted-foreground">No videos uploaded yet</p>
+              <p className="text-muted-foreground text-sm mt-2">
+                Start sharing your content by uploading your first video
+              </p>
+            </div>
+          )}
+        </div>
+
+        {/* Settings Sections */}
+        <div className="mb-8">
+          <h2 className="text-lg font-bold text-foreground mb-4">Account Settings</h2>
+          <div className="space-y-3">
+            <div className="bg-card rounded-lg p-4 hover:bg-opacity-80 cursor-pointer transition-colors">
+              <p className="text-foreground font-medium">Edit Profile</p>
+              <p className="text-muted-foreground text-sm">Update your username and avatar</p>
+            </div>
+            <div className="bg-card rounded-lg p-4 hover:bg-opacity-80 cursor-pointer transition-colors">
+              <p className="text-foreground font-medium">Privacy Settings</p>
+              <p className="text-muted-foreground text-sm">Control who can see your profile and videos</p>
+            </div>
+            <div className="bg-card rounded-lg p-4 hover:bg-opacity-80 cursor-pointer transition-colors">
+              <p className="text-foreground font-medium">Notifications</p>
+              <p className="text-muted-foreground text-sm">Manage notification preferences</p>
+            </div>
+            <div className="bg-card rounded-lg p-4 hover:bg-opacity-80 cursor-pointer transition-colors">
+              <p className="text-foreground font-medium">Device Management</p>
+              <p className="text-muted-foreground text-sm">Manage devices and login history</p>
+            </div>
           </div>
         </div>
 
         {/* Logout Button */}
-        <button className="w-full mt-8 px-6 py-3 bg-destructive text-destructive-foreground rounded-lg font-medium hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+        <button
+          onClick={logout}
+          className="w-full px-6 py-3 bg-destructive text-destructive-foreground rounded-lg font-medium hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+        >
           <LogOut className="w-4 h-4" />
           Logout
         </button>
