@@ -115,10 +115,7 @@ export default function VideoPlayer({
 
   const skipForward = (seconds = 10) => {
     if (videoRef.current) {
-      videoRef.current.currentTime = Math.min(
-        duration,
-        currentTime + seconds
-      );
+      videoRef.current.currentTime = Math.min(duration, currentTime + seconds);
     }
   };
 

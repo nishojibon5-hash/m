@@ -64,21 +64,21 @@ export function generateDeviceFingerprint(): string {
 export function getOrCreateDeviceId(): string {
   const STORAGE_KEY = "bilibili_device_id";
   const STORAGE_VERSION_KEY = "bilibili_device_version";
-  
+
   let deviceId = localStorage.getItem(STORAGE_KEY);
   const storedVersion = localStorage.getItem(STORAGE_VERSION_KEY);
-  
+
   // Regenerate if version changed (for security)
   if (!deviceId || storedVersion !== "1") {
     const fingerprint = generateDeviceFingerprint();
     const timestamp = Date.now().toString(36);
     const randomSuffix = Math.random().toString(36).substring(2, 15);
     deviceId = `${fingerprint}-${timestamp}-${randomSuffix}`;
-    
+
     localStorage.setItem(STORAGE_KEY, deviceId);
     localStorage.setItem(STORAGE_VERSION_KEY, "1");
   }
-  
+
   return deviceId;
 }
 
@@ -88,7 +88,7 @@ export function getOrCreateDeviceId(): string {
 export function getDeviceFingerprint(): DeviceFingerprint {
   const STORAGE_KEY = "bilibili_device_fp";
   let stored = localStorage.getItem(STORAGE_KEY);
-  
+
   if (stored) {
     try {
       const fp: DeviceFingerprint = JSON.parse(stored);
@@ -99,7 +99,7 @@ export function getDeviceFingerprint(): DeviceFingerprint {
       console.error("Failed to parse stored fingerprint:", e);
     }
   }
-  
+
   // Create new fingerprint
   const id = getOrCreateDeviceId();
   const info = getDeviceInfo();
@@ -110,7 +110,7 @@ export function getDeviceFingerprint(): DeviceFingerprint {
     lastSeen: now,
     info,
   };
-  
+
   localStorage.setItem(STORAGE_KEY, JSON.stringify(fp));
   return fp;
 }

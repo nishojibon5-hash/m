@@ -226,7 +226,8 @@ export default function Watch() {
               <div className="bg-card rounded-lg p-4 mb-8">
                 <div className="flex items-center justify-between mb-2">
                   <p className="text-muted-foreground text-sm">
-                    {(video.views / 1000000).toFixed(1)}M views • {video.uploadedAt}
+                    {(video.views / 1000000).toFixed(1)}M views •{" "}
+                    {video.uploadedAt}
                   </p>
                 </div>
                 <p className="text-foreground text-sm leading-relaxed">

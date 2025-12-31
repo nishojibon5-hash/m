@@ -11,7 +11,8 @@ interface NavTab {
 const SAMPLE_VIDEOS = [
   {
     id: "1",
-    thumbnail: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=400&h=225&fit=crop",
+    thumbnail:
+      "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=400&h=225&fit=crop",
     title: "Ghost Doctor S01 (Ep01-Ep08) hindi dubbed",
     creator: "Drama Centre",
     creatorAvatar: "https://i.pravatar.cc/40?img=1",
@@ -20,7 +21,8 @@ const SAMPLE_VIDEOS = [
   },
   {
     id: "2",
-    thumbnail: "https://images.unsplash.com/photo-1540224652253-797f1d21f6b9?w=400&h=225&fit=crop",
+    thumbnail:
+      "https://images.unsplash.com/photo-1540224652253-797f1d21f6b9?w=400&h=225&fit=crop",
     title: "Best Anime Openings 2024 Compilation",
     creator: "Anime Hub",
     creatorAvatar: "https://i.pravatar.cc/40?img=2",
@@ -29,7 +31,8 @@ const SAMPLE_VIDEOS = [
   },
   {
     id: "3",
-    thumbnail: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=225&fit=crop",
+    thumbnail:
+      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=225&fit=crop",
     title: "Latest Gaming Stream - Best Moments",
     creator: "Gaming Zone",
     creatorAvatar: "https://i.pravatar.cc/40?img=3",
@@ -38,7 +41,8 @@ const SAMPLE_VIDEOS = [
   },
   {
     id: "4",
-    thumbnail: "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=400&h=225&fit=crop",
+    thumbnail:
+      "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=400&h=225&fit=crop",
     title: "Music Video - Summer Vibes 2024",
     creator: "Music Channel",
     creatorAvatar: "https://i.pravatar.cc/40?img=4",
@@ -47,7 +51,8 @@ const SAMPLE_VIDEOS = [
   },
   {
     id: "5",
-    thumbnail: "https://images.unsplash.com/photo-1489599849228-13a0735276ed?w=400&h=225&fit=crop",
+    thumbnail:
+      "https://images.unsplash.com/photo-1489599849228-13a0735276ed?w=400&h=225&fit=crop",
     title: "Vlog: Exploring Tokyo Street Food",
     creator: "Travel Vlog",
     creatorAvatar: "https://i.pravatar.cc/40?img=5",
@@ -56,7 +61,8 @@ const SAMPLE_VIDEOS = [
   },
   {
     id: "6",
-    thumbnail: "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=400&h=225&fit=crop",
+    thumbnail:
+      "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=400&h=225&fit=crop",
     title: "Comedy Shorts - Funniest Moments",
     creator: "Laugh Out",
     creatorAvatar: "https://i.pravatar.cc/40?img=6",
@@ -65,7 +71,8 @@ const SAMPLE_VIDEOS = [
   },
   {
     id: "7",
-    thumbnail: "https://images.unsplash.com/photo-1516979187457-635ffe35c7ae?w=400&h=225&fit=crop",
+    thumbnail:
+      "https://images.unsplash.com/photo-1516979187457-635ffe35c7ae?w=400&h=225&fit=crop",
     title: "Tech Review - New Smartphone 2024",
     creator: "Tech Review",
     creatorAvatar: "https://i.pravatar.cc/40?img=7",
@@ -74,7 +81,8 @@ const SAMPLE_VIDEOS = [
   },
   {
     id: "8",
-    thumbnail: "https://images.unsplash.com/photo-1516738901601-2e1b62dc0c45?w=400&h=225&fit=crop",
+    thumbnail:
+      "https://images.unsplash.com/photo-1516738901601-2e1b62dc0c45?w=400&h=225&fit=crop",
     title: "Fitness Workout - Full Body Training",
     creator: "Fitness Pro",
     creatorAvatar: "https://i.pravatar.cc/40?img=8",
@@ -83,7 +91,8 @@ const SAMPLE_VIDEOS = [
   },
   {
     id: "9",
-    thumbnail: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=225&fit=crop",
+    thumbnail:
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=225&fit=crop",
     title: "Nature Documentary - Amazon Rainforest",
     creator: "Nature Films",
     creatorAvatar: "https://i.pravatar.cc/40?img=9",
@@ -116,7 +125,7 @@ export default function Index() {
           {SAMPLE_VIDEOS.map((video, index) => (
             <div key={video.id}>
               <VideoCard {...video} />
-              
+
               {/* Ad Card - Inserted after specific positions */}
               {index === 2 && (
                 <div className="md:col-span-2 lg:col-span-4 mt-6 mb-6">

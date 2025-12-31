@@ -8,7 +8,8 @@ export default function Discover() {
           <div className="text-6xl mb-4">🔍</div>
           <h1 className="text-2xl font-bold text-foreground mb-2">Discover</h1>
           <p className="text-muted-foreground">
-            This page is ready for you to customize! Prompt us to add the content you want here.
+            This page is ready for you to customize! Prompt us to add the
+            content you want here.
           </p>
         </div>
       </div>

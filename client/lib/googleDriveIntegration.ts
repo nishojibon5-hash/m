@@ -1,7 +1,7 @@
 /**
  * Google Drive Integration Library
  * Handles video uploads and metadata storage using Google Drive + Google Sheets API
- * 
+ *
  * Note: In production, implement proper OAuth 2.0 flow with Google API
  * Currently using localStorage as placeholder for demonstration
  */
@@ -61,8 +61,17 @@ export async function initializeGoogleDrive(): Promise<boolean> {
  */
 export async function uploadVideoToDrive(
   file: File,
-  metadata: Omit<VideoMetadata, "id" | "uploadedAt" | "fileUrl" | "views" | "likes" | "status" | "fileSizeBytes">,
-  onProgress: (progress: UploadProgress) => void
+  metadata: Omit<
+    VideoMetadata,
+    | "id"
+    | "uploadedAt"
+    | "fileUrl"
+    | "views"
+    | "likes"
+    | "status"
+    | "fileSizeBytes"
+  >,
+  onProgress: (progress: UploadProgress) => void,
 ): Promise<VideoMetadata> {
   return new Promise((resolve, reject) => {
     const fileId = `video_${Date.now()}_${Math.random().toString(36).substring(7)}`;
@@ -170,17 +179,17 @@ export function getVideosByCategory(category: string): VideoMetadata[] {
  */
 export function updateVideoMetadata(
   videoId: string,
-  updates: Partial<VideoMetadata>
+  updates: Partial<VideoMetadata>,
 ): VideoMetadata | null {
   const videos = getAllVideoMetadata();
   const index = videos.findIndex((v) => v.id === videoId);
-  
+
   if (index !== -1) {
     videos[index] = { ...videos[index], ...updates };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(videos));
     return videos[index];
   }
-  
+
   return null;
 }
 
@@ -190,12 +199,12 @@ export function updateVideoMetadata(
 export function deleteVideo(videoId: string): boolean {
   const videos = getAllVideoMetadata();
   const filtered = videos.filter((v) => v.id !== videoId);
-  
+
   if (filtered.length < videos.length) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(filtered));
     return true;
   }
-  
+
   return false;
 }
 
@@ -216,11 +225,11 @@ export function getUploadProgress(fileId: string): UploadProgress | null {
  */
 export function formatFileSize(bytes: number): string {
   if (bytes === 0) return "0 Bytes";
-  
+
   const k = 1024;
   const sizes = ["Bytes", "KB", "MB", "GB"];
   const i = Math.floor(Math.log(bytes) / Math.log(k));
-  
+
   return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + " " + sizes[i];
 }
 

@@ -26,16 +26,16 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/discover" element={<Discover />} />
-          <Route path="/upload" element={<Upload />} />
-          <Route path="/chats" element={<Chats />} />
-          <Route path="/me" element={<Me />} />
-          <Route path="/watch/:videoId" element={<Watch />} />
-          <Route path="/admin" element={<Admin />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/discover" element={<Discover />} />
+            <Route path="/upload" element={<Upload />} />
+            <Route path="/chats" element={<Chats />} />
+            <Route path="/me" element={<Me />} />
+            <Route path="/watch/:videoId" element={<Watch />} />
+            <Route path="/admin" element={<Admin />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
         </BrowserRouter>
       </TooltipProvider>
     </AuthProvider>

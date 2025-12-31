@@ -8,7 +8,10 @@ import {
   AlertCircle,
   ArrowLeft,
 } from "lucide-react";
-import { getAllVideoMetadata, getVideosByCreator } from "@/lib/googleDriveIntegration";
+import {
+  getAllVideoMetadata,
+  getVideosByCreator,
+} from "@/lib/googleDriveIntegration";
 import { useAuth } from "@/lib/authContext";
 
 type AdminTab = "overview" | "videos" | "users" | "settings" | "analytics";
@@ -54,7 +57,8 @@ export default function Admin() {
   // Calculate stats
   const stats: DashboardStats = {
     totalVideos: allVideos.length,
-    totalUsers: JSON.parse(localStorage.getItem("bilibili_users_list") || "[]").length,
+    totalUsers: JSON.parse(localStorage.getItem("bilibili_users_list") || "[]")
+      .length,
     totalViews: allVideos.reduce((acc, v) => acc + v.views, 0),
     totalLikes: allVideos.reduce((acc, v) => acc + v.likes, 0),
     avgVideoDuration:
@@ -129,7 +133,9 @@ export default function Admin() {
             {/* Stats Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
               <div className="bg-card rounded-lg p-6 border border-border">
-                <p className="text-muted-foreground text-sm mb-2">Total Videos</p>
+                <p className="text-muted-foreground text-sm mb-2">
+                  Total Videos
+                </p>
                 <p className="text-3xl font-bold text-primary">
                   {stats.totalVideos}
                 </p>
@@ -141,15 +147,21 @@ export default function Admin() {
               </div>
 
               <div className="bg-card rounded-lg p-6 border border-border">
-                <p className="text-muted-foreground text-sm mb-2">Total Users</p>
+                <p className="text-muted-foreground text-sm mb-2">
+                  Total Users
+                </p>
                 <p className="text-3xl font-bold text-primary">
                   {stats.totalUsers}
                 </p>
-                <p className="text-muted-foreground text-xs mt-2">Active accounts</p>
+                <p className="text-muted-foreground text-xs mt-2">
+                  Active accounts
+                </p>
               </div>
 
               <div className="bg-card rounded-lg p-6 border border-border">
-                <p className="text-muted-foreground text-sm mb-2">Total Views</p>
+                <p className="text-muted-foreground text-sm mb-2">
+                  Total Views
+                </p>
                 <p className="text-3xl font-bold text-primary">
                   {(stats.totalViews / 1000000).toFixed(1)}M
                 </p>
@@ -161,7 +173,9 @@ export default function Admin() {
               </div>
 
               <div className="bg-card rounded-lg p-6 border border-border">
-                <p className="text-muted-foreground text-sm mb-2">Total Likes</p>
+                <p className="text-muted-foreground text-sm mb-2">
+                  Total Likes
+                </p>
                 <p className="text-3xl font-bold text-primary">
                   {(stats.totalLikes / 1000).toFixed(0)}K
                 </p>
@@ -202,7 +216,9 @@ export default function Admin() {
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-foreground">Google Drive Integration</span>
+                  <span className="text-foreground">
+                    Google Drive Integration
+                  </span>
                   <span className="px-3 py-1 bg-yellow-500 bg-opacity-20 text-yellow-500 text-xs rounded-full font-medium">
                     Testing
                   </span>
@@ -228,9 +244,7 @@ export default function Admin() {
             {allVideos.length === 0 ? (
               <div className="bg-card rounded-lg p-8 text-center border border-border">
                 <Video className="w-12 h-12 mx-auto mb-3 text-muted-foreground" />
-                <p className="text-muted-foreground">
-                  No videos uploaded yet
-                </p>
+                <p className="text-muted-foreground">No videos uploaded yet</p>
               </div>
             ) : (
               <div className="overflow-x-auto">
@@ -290,7 +304,9 @@ export default function Admin() {
                                 : "bg-yellow-500 bg-opacity-20 text-yellow-500"
                             }`}
                           >
-                            {video.status === "ready" ? "Published" : "Processing"}
+                            {video.status === "ready"
+                              ? "Published"
+                              : "Processing"}
                           </span>
                         </td>
                       </tr>
@@ -328,32 +344,32 @@ export default function Admin() {
                   </tr>
                 </thead>
                 <tbody>
-                  {JSON.parse(localStorage.getItem("bilibili_users_list") || "[]").map(
-                    (userItem: any) => {
-                      const userVideos = allVideos.filter(
-                        (v) => v.creatorId === userItem.id
-                      );
-                      return (
-                        <tr
-                          key={userItem.id}
-                          className="border-b border-border hover:bg-muted transition-colors"
-                        >
-                          <td className="px-6 py-4 text-sm text-foreground">
-                            {userItem.username}
-                          </td>
-                          <td className="px-6 py-4 text-sm text-muted-foreground font-mono text-xs">
-                            {userItem.deviceId?.substring(0, 12)}...
-                          </td>
-                          <td className="px-6 py-4 text-sm text-foreground">
-                            {userVideos.length}
-                          </td>
-                          <td className="px-6 py-4 text-sm text-muted-foreground">
-                            {new Date(userItem.createdAt).toLocaleDateString()}
-                          </td>
-                        </tr>
-                      );
-                    }
-                  )}
+                  {JSON.parse(
+                    localStorage.getItem("bilibili_users_list") || "[]",
+                  ).map((userItem: any) => {
+                    const userVideos = allVideos.filter(
+                      (v) => v.creatorId === userItem.id,
+                    );
+                    return (
+                      <tr
+                        key={userItem.id}
+                        className="border-b border-border hover:bg-muted transition-colors"
+                      >
+                        <td className="px-6 py-4 text-sm text-foreground">
+                          {userItem.username}
+                        </td>
+                        <td className="px-6 py-4 text-sm text-muted-foreground font-mono text-xs">
+                          {userItem.deviceId?.substring(0, 12)}...
+                        </td>
+                        <td className="px-6 py-4 text-sm text-foreground">
+                          {userVideos.length}
+                        </td>
+                        <td className="px-6 py-4 text-sm text-muted-foreground">
+                          {new Date(userItem.createdAt).toLocaleDateString()}
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
 

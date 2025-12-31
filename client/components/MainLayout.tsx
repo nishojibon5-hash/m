@@ -99,7 +99,9 @@ export default function MainLayout({
                     key={id}
                     to={href}
                     className={`flex flex-col items-center justify-center flex-1 h-20 transition-colors rounded-lg ${
-                      isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
+                      isActive
+                        ? "text-primary"
+                        : "text-muted-foreground hover:text-foreground"
                     }`}
                   >
                     {id === "upload" ? (
@@ -128,13 +130,17 @@ export default function MainLayout({
                     key={id}
                     to={href}
                     className={`flex items-center gap-2 px-6 h-16 transition-colors rounded-lg ${
-                      isActive ? "text-primary border-b-2 border-primary" : "text-muted-foreground hover:text-foreground"
+                      isActive
+                        ? "text-primary border-b-2 border-primary"
+                        : "text-muted-foreground hover:text-foreground"
                     }`}
                   >
                     {id === "upload" ? (
                       <div className="rounded-full bg-primary px-4 py-2 flex items-center gap-2 shadow-lg">
                         <Icon className="w-5 h-5 text-primary-foreground" />
-                        <span className="text-sm font-medium text-primary-foreground">{label}</span>
+                        <span className="text-sm font-medium text-primary-foreground">
+                          {label}
+                        </span>
                       </div>
                     ) : (
                       <>

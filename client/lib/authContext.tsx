@@ -1,5 +1,9 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { getOrCreateDeviceId, getDeviceFingerprint, isNewDevice } from "./deviceTracking";
+import {
+  getOrCreateDeviceId,
+  getDeviceFingerprint,
+  isNewDevice,
+} from "./deviceTracking";
 
 export interface User {
   id: string;
@@ -40,7 +44,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         // User already exists on this device
         const userData: User = JSON.parse(storedUser);
         userData.lastLogin = Date.now();
-        localStorage.setItem(`bilibili_user_${deviceId}`, JSON.stringify(userData));
+        localStorage.setItem(
+          `bilibili_user_${deviceId}`,
+          JSON.stringify(userData),
+        );
         setUser(userData);
       } else if (isNewDevice()) {
         // New device - create account automatically
@@ -63,7 +70,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const username = `user_${timestamp}`;
 
     // Check if this is the first user (make them admin)
-    const usersList = JSON.parse(localStorage.getItem("bilibili_users_list") || "[]");
+    const usersList = JSON.parse(
+      localStorage.getItem("bilibili_users_list") || "[]",
+    );
     const isFirstUser = usersList.length === 0;
 
     // Create user object

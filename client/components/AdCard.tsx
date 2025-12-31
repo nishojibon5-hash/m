@@ -23,7 +23,9 @@ export default function AdCard({
   ctaText = "Join Now",
 }: AdCardProps) {
   return (
-    <div className={`rounded-lg overflow-hidden ${backgroundColor} p-6 text-white`}>
+    <div
+      className={`rounded-lg overflow-hidden ${backgroundColor} p-6 text-white`}
+    >
       {/* Ad Badge */}
       <div className="mb-4">
         <span className="inline-block bg-white bg-opacity-20 text-white text-xs font-bold px-3 py-1 rounded">
@@ -37,14 +39,20 @@ export default function AdCard({
           {/* Title and Subtitle */}
           <div>
             <h3 className="text-xl font-bold mb-1">{title}</h3>
-            {subtitle && <p className="text-sm text-white text-opacity-80 mb-3">{subtitle}</p>}
+            {subtitle && (
+              <p className="text-sm text-white text-opacity-80 mb-3">
+                {subtitle}
+              </p>
+            )}
 
             {price && (
               <p className="text-3xl font-bold text-yellow-300 mb-3">{price}</p>
             )}
 
             {description && (
-              <p className="text-sm text-white text-opacity-80">{description}</p>
+              <p className="text-sm text-white text-opacity-80">
+                {description}
+              </p>
             )}
           </div>
 

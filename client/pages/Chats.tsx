@@ -9,7 +9,8 @@ export default function Chats() {
           <MessageCircle className="w-16 h-16 mx-auto mb-4 text-primary" />
           <h1 className="text-2xl font-bold text-foreground mb-2">Messages</h1>
           <p className="text-muted-foreground">
-            This page is ready for you to customize! Prompt us to add the content you want here.
+            This page is ready for you to customize! Prompt us to add the
+            content you want here.
           </p>
         </div>
       </div>

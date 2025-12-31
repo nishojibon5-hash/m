@@ -102,23 +102,23 @@ VITE_NODE_ENV=production
 **vite.config.ts** - Ensure it's properly configured:
 
 ```typescript
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
-import path from 'path'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react-swc";
+import path from "path";
 
 export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './client'),
-      '@shared': path.resolve(__dirname, './shared'),
+      "@": path.resolve(__dirname, "./client"),
+      "@shared": path.resolve(__dirname, "./shared"),
     },
   },
   build: {
-    outDir: 'dist/spa',
+    outDir: "dist/spa",
     emptyOutDir: true,
   },
-})
+});
 ```
 
 ### 2.3 Add Production Build Script
@@ -271,6 +271,7 @@ O: Status
 ### 5.3 Get Sheet ID
 
 Your sheet ID is in the URL:
+
 ```
 https://docs.google.com/spreadsheets/d/{SHEET_ID}/edit
 ```
@@ -289,28 +290,30 @@ Create/update `client/lib/googleDriveIntegration.ts`:
 /**
  * Initialize Google Drive API with real authentication
  */
-export async function initializeGoogleDrive(clientId: string): Promise<boolean> {
+export async function initializeGoogleDrive(
+  clientId: string,
+): Promise<boolean> {
   return new Promise((resolve) => {
-    const script = document.createElement('script');
-    script.src = 'https://apis.google.com/js/client.js';
+    const script = document.createElement("script");
+    script.src = "https://apis.google.com/js/client.js";
     script.async = true;
     script.defer = true;
     script.onload = () => {
-      gapi.load('client:auth2', async () => {
+      gapi.load("client:auth2", async () => {
         try {
           await gapi.client.init({
             apiKey: import.meta.env.VITE_GOOGLE_DRIVE_API_KEY,
             clientId: import.meta.env.VITE_GOOGLE_CLIENT_ID,
             discoveryDocs: [
-              'https://www.googleapis.com/discovery/v1/apis/drive/v3/rest',
-              'https://www.googleapis.com/discovery/v1/apis/sheets/v4/rest',
+              "https://www.googleapis.com/discovery/v1/apis/drive/v3/rest",
+              "https://www.googleapis.com/discovery/v1/apis/sheets/v4/rest",
             ],
-            scope: 'https://www.googleapis.com/auth/drive',
+            scope: "https://www.googleapis.com/auth/drive",
           });
-          localStorage.setItem('google_drive_initialized', 'true');
+          localStorage.setItem("google_drive_initialized", "true");
           resolve(true);
         } catch (error) {
-          console.error('Google Drive initialization failed:', error);
+          console.error("Google Drive initialization failed:", error);
           resolve(false);
         }
       });
@@ -324,12 +327,12 @@ export async function initializeGoogleDrive(clientId: string): Promise<boolean> 
  */
 export async function uploadVideoFileToDrive(
   file: File,
-  folderName: string = 'VideoShare Videos'
+  folderName: string = "VideoShare Videos",
 ): Promise<string> {
   try {
     // Find or create folder
     const folderId = await ensureFolder(folderName);
-    
+
     // Upload file
     const fileMetadata = {
       name: file.name,
@@ -338,26 +341,26 @@ export async function uploadVideoFileToDrive(
 
     const form = new FormData();
     form.append(
-      'metadata',
-      new Blob([JSON.stringify(fileMetadata)], { type: 'application/json' })
+      "metadata",
+      new Blob([JSON.stringify(fileMetadata)], { type: "application/json" }),
     );
-    form.append('file', file);
+    form.append("file", file);
 
     const response = await fetch(
-      'https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id',
+      "https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id",
       {
-        method: 'POST',
+        method: "POST",
         headers: {
           Authorization: `Bearer ${gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token}`,
         },
         body: form,
-      }
+      },
     );
 
     const data = await response.json();
     return data.id; // Google Drive file ID
   } catch (error) {
-    console.error('Upload to Google Drive failed:', error);
+    console.error("Upload to Google Drive failed:", error);
     throw error;
   }
 }
@@ -370,8 +373,8 @@ async function ensureFolder(folderName: string): Promise<string> {
     // Check if folder exists
     const response = await gapi.client.drive.files.list({
       q: `name='${folderName}' and mimeType='application/vnd.google-apps.folder' and trashed=false`,
-      spaces: 'drive',
-      fields: 'files(id, name)',
+      spaces: "drive",
+      fields: "files(id, name)",
       pageSize: 1,
     });
 
@@ -383,14 +386,14 @@ async function ensureFolder(folderName: string): Promise<string> {
     const createResponse = await gapi.client.drive.files.create({
       resource: {
         name: folderName,
-        mimeType: 'application/vnd.google-apps.folder',
+        mimeType: "application/vnd.google-apps.folder",
       },
-      fields: 'id',
+      fields: "id",
     });
 
     return createResponse.result.id;
   } catch (error) {
-    console.error('Folder operation failed:', error);
+    console.error("Folder operation failed:", error);
     throw error;
   }
 }
@@ -398,10 +401,12 @@ async function ensureFolder(folderName: string): Promise<string> {
 /**
  * Save metadata to Google Sheets
  */
-export async function saveVideoMetadataToSheets(metadata: VideoMetadata): Promise<boolean> {
+export async function saveVideoMetadataToSheets(
+  metadata: VideoMetadata,
+): Promise<boolean> {
   try {
     const sheetId = import.meta.env.VITE_GOOGLE_SHEETS_ID;
-    
+
     const values = [
       [
         metadata.id,
@@ -424,8 +429,8 @@ export async function saveVideoMetadataToSheets(metadata: VideoMetadata): Promis
 
     await gapi.client.sheets.spreadsheets.values.append({
       spreadsheetId: sheetId,
-      range: 'Sheet1!A:O',
-      valueInputOption: 'USER_ENTERED',
+      range: "Sheet1!A:O",
+      valueInputOption: "USER_ENTERED",
       resource: {
         values,
       },
@@ -433,7 +438,7 @@ export async function saveVideoMetadataToSheets(metadata: VideoMetadata): Promis
 
     return true;
   } catch (error) {
-    console.error('Save to Google Sheets failed:', error);
+    console.error("Save to Google Sheets failed:", error);
     throw error;
   }
 }
@@ -444,10 +449,10 @@ export async function saveVideoMetadataToSheets(metadata: VideoMetadata): Promis
 export async function getVideosFromSheets(): Promise<VideoMetadata[]> {
   try {
     const sheetId = import.meta.env.VITE_GOOGLE_SHEETS_ID;
-    
+
     const response = await gapi.client.sheets.spreadsheets.values.get({
       spreadsheetId: sheetId,
-      range: 'Sheet1!A:O',
+      range: "Sheet1!A:O",
     });
 
     const values = response.result.values || [];
@@ -477,7 +482,7 @@ export async function getVideosFromSheets(): Promise<VideoMetadata[]> {
 
     return videos;
   } catch (error) {
-    console.error('Get from Google Sheets failed:', error);
+    console.error("Get from Google Sheets failed:", error);
     return [];
   }
 }
@@ -486,6 +491,7 @@ export async function getVideosFromSheets(): Promise<VideoMetadata[]> {
 ### 6.2 Update .env Files
 
 **.env.local** (Development):
+
 ```
 VITE_GOOGLE_DRIVE_API_KEY=YOUR_DEV_API_KEY
 VITE_GOOGLE_CLIENT_ID=YOUR_DEV_CLIENT_ID.apps.googleusercontent.com
@@ -495,6 +501,7 @@ VITE_APP_URL=http://localhost:5173
 ```
 
 **.env.production** (Production - set in Vercel):
+
 ```
 VITE_GOOGLE_DRIVE_API_KEY=YOUR_PROD_API_KEY
 VITE_GOOGLE_CLIENT_ID=YOUR_PROD_CLIENT_ID.apps.googleusercontent.com
@@ -509,17 +516,20 @@ Add Google Drive upload in `client/pages/Upload.tsx`:
 
 ```typescript
 // Import the new function
-import { uploadVideoFileToDrive, saveVideoMetadataToSheets } from "@/lib/googleDriveIntegration";
+import {
+  uploadVideoFileToDrive,
+  saveVideoMetadataToSheets,
+} from "@/lib/googleDriveIntegration";
 
 // In the upload handler:
 const handleUploadToGoogleDrive = async () => {
   try {
     // Upload file to Google Drive
     const driveFileId = await uploadVideoFileToDrive(state.file!);
-    
+
     // Get shareable link
     const fileUrl = `https://drive.google.com/file/d/${driveFileId}/view`;
-    
+
     // Save metadata to Google Sheets
     const metadata = {
       id: `video_${Date.now()}`,
@@ -538,13 +548,13 @@ const handleUploadToGoogleDrive = async () => {
       format: state.format,
       status: "ready",
     };
-    
+
     await saveVideoMetadataToSheets(metadata);
-    
+
     // Success!
-    setState(prev => ({ ...prev, success: true }));
+    setState((prev) => ({ ...prev, success: true }));
   } catch (error) {
-    setState(prev => ({
+    setState((prev) => ({
       ...prev,
       error: `Upload failed: ${error.message}`,
     }));
@@ -599,6 +609,7 @@ npm run dev
 **YES! Here's why:**
 
 ✅ **GitHub + Vercel is Perfect for:**
+
 - Easy deployment and updates
 - Automatic builds on push
 - Free SSL/HTTPS
@@ -607,6 +618,7 @@ npm run dev
 - GitHub Actions for CI/CD
 
 ✅ **Google Drive + Sheets is Suitable for:**
+
 - Small to medium video libraries
 - Free storage (up to 15GB)
 - Easy to manage and debug
@@ -614,6 +626,7 @@ npm run dev
 - Can migrate to professional storage later
 
 ⚠️ **Considerations:**
+
 - Google Drive has rate limits (be aware)
 - For huge scale, consider Wasabi or S3 later
 - Sheets can be slow with 10,000+ rows (use real database then)
@@ -624,26 +637,31 @@ npm run dev
 ## TROUBLESHOOTING
 
 ### Issue: "API key not valid"
+
 - Check if API is enabled in Google Cloud Console
 - Verify API key in .env file
 - Make sure API is restricted to correct origins
 
 ### Issue: "Service account doesn't have permission"
+
 - Share the Google Sheet with service account email
 - Give Editor permissions
 - Wait 30 seconds before retrying
 
 ### Issue: "Videos not uploading"
+
 - Check Google Drive folder permissions
 - Verify API quotas not exceeded
 - Check browser console for errors
 
 ### Issue: "Mobile nav still not visible"
+
 - Clear browser cache (Ctrl+Shift+Delete)
 - Check if `pb-24` class is applied to main div
 - Inspect in DevTools to verify z-index
 
 ### Issue: "Vercel deployment fails"
+
 - Check build logs in Vercel dashboard
 - Verify all environment variables are set
 - Run `npm run build` locally to test

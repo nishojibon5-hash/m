@@ -50,18 +50,26 @@ export default function Me() {
           {/* Stats */}
           <div className="grid grid-cols-3 gap-4 pt-6 border-t border-border">
             <div className="text-center">
-              <p className="text-2xl font-bold text-primary">{userVideos.length}</p>
+              <p className="text-2xl font-bold text-primary">
+                {userVideos.length}
+              </p>
               <p className="text-muted-foreground text-sm">Videos</p>
             </div>
             <div className="text-center">
               <p className="text-2xl font-bold text-primary">
-                {(userVideos.reduce((acc, v) => acc + v.views, 0) / 1000).toFixed(0)}K
+                {(
+                  userVideos.reduce((acc, v) => acc + v.views, 0) / 1000
+                ).toFixed(0)}
+                K
               </p>
               <p className="text-muted-foreground text-sm">Total Views</p>
             </div>
             <div className="text-center">
               <p className="text-2xl font-bold text-primary">
-                {(userVideos.reduce((acc, v) => acc + v.likes, 0) / 1000).toFixed(0)}K
+                {(
+                  userVideos.reduce((acc, v) => acc + v.likes, 0) / 1000
+                ).toFixed(0)}
+                K
               </p>
               <p className="text-muted-foreground text-sm">Total Likes</p>
             </div>
@@ -74,7 +82,10 @@ export default function Me() {
           {userVideos.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {userVideos.map((video) => (
-                <div key={video.id} className="bg-card rounded-lg overflow-hidden hover:ring-2 hover:ring-primary transition-all">
+                <div
+                  key={video.id}
+                  className="bg-card rounded-lg overflow-hidden hover:ring-2 hover:ring-primary transition-all"
+                >
                   <div className="relative aspect-video">
                     <img
                       src={video.thumbnail}
@@ -111,23 +122,33 @@ export default function Me() {
 
         {/* Settings Sections */}
         <div className="mb-8">
-          <h2 className="text-lg font-bold text-foreground mb-4">Account Settings</h2>
+          <h2 className="text-lg font-bold text-foreground mb-4">
+            Account Settings
+          </h2>
           <div className="space-y-3">
             <div className="bg-card rounded-lg p-4 hover:bg-opacity-80 cursor-pointer transition-colors">
               <p className="text-foreground font-medium">Edit Profile</p>
-              <p className="text-muted-foreground text-sm">Update your username and avatar</p>
+              <p className="text-muted-foreground text-sm">
+                Update your username and avatar
+              </p>
             </div>
             <div className="bg-card rounded-lg p-4 hover:bg-opacity-80 cursor-pointer transition-colors">
               <p className="text-foreground font-medium">Privacy Settings</p>
-              <p className="text-muted-foreground text-sm">Control who can see your profile and videos</p>
+              <p className="text-muted-foreground text-sm">
+                Control who can see your profile and videos
+              </p>
             </div>
             <div className="bg-card rounded-lg p-4 hover:bg-opacity-80 cursor-pointer transition-colors">
               <p className="text-foreground font-medium">Notifications</p>
-              <p className="text-muted-foreground text-sm">Manage notification preferences</p>
+              <p className="text-muted-foreground text-sm">
+                Manage notification preferences
+              </p>
             </div>
             <div className="bg-card rounded-lg p-4 hover:bg-opacity-80 cursor-pointer transition-colors">
               <p className="text-foreground font-medium">Device Management</p>
-              <p className="text-muted-foreground text-sm">Manage devices and login history</p>
+              <p className="text-muted-foreground text-sm">
+                Manage devices and login history
+              </p>
             </div>
           </div>
         </div>

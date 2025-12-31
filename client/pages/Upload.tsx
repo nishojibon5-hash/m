@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { Upload as UploadIcon, X, Check } from "lucide-react";
 import MainLayout from "@/components/MainLayout";
-import { uploadVideoToDrive, formatFileSize, formatSpeed, formatTimeRemaining } from "@/lib/googleDriveIntegration";
+import {
+  uploadVideoToDrive,
+  formatFileSize,
+  formatSpeed,
+  formatTimeRemaining,
+} from "@/lib/googleDriveIntegration";
 import { useAuth } from "@/lib/authContext";
 
 type VideoFormat = "long" | "short" | "photo_text";
@@ -107,7 +112,7 @@ export default function Upload() {
             speed: progress.speed,
             eta: progress.eta,
           }));
-        }
+        },
       );
 
       setState((prev) => ({
@@ -151,7 +156,9 @@ export default function Upload() {
             <Check className="w-5 h-5 text-green-500" />
             <div>
               <p className="text-green-500 font-medium">Upload Successful!</p>
-              <p className="text-green-500 text-sm">Your video is now processing and will be available shortly.</p>
+              <p className="text-green-500 text-sm">
+                Your video is now processing and will be available shortly.
+              </p>
             </div>
           </div>
         )}
@@ -166,43 +173,49 @@ export default function Upload() {
 
         {/* Format Selection */}
         <div className="mb-8">
-          <h2 className="text-xl font-bold text-foreground mb-4">Choose Video Format</h2>
+          <h2 className="text-xl font-bold text-foreground mb-4">
+            Choose Video Format
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {(Object.entries(FORMAT_INFO) as Array<[VideoFormat, typeof FORMAT_INFO[VideoFormat]]>).map(
-              ([format, info]) => (
-                <button
-                  key={format}
-                  onClick={() =>
-                    setState((prev) => ({
-                      ...prev,
-                      format,
-                    }))
-                  }
-                  className={`p-4 rounded-lg border-2 transition-all text-left ${
-                    state.format === format
-                      ? "border-primary bg-primary bg-opacity-10"
-                      : "border-border hover:border-muted"
-                  }`}
-                >
-                  <h3 className="font-semibold text-foreground mb-2">
-                    {info.label}
-                  </h3>
-                  <p className="text-sm text-muted-foreground mb-3">
-                    {info.description}
-                  </p>
-                  <div className="space-y-1 text-xs text-muted-foreground">
-                    <p>Max: {info.maxSize}</p>
-                    <p>Duration: {info.maxDuration}</p>
-                  </div>
-                </button>
-              )
-            )}
+            {(
+              Object.entries(FORMAT_INFO) as Array<
+                [VideoFormat, (typeof FORMAT_INFO)[VideoFormat]]
+              >
+            ).map(([format, info]) => (
+              <button
+                key={format}
+                onClick={() =>
+                  setState((prev) => ({
+                    ...prev,
+                    format,
+                  }))
+                }
+                className={`p-4 rounded-lg border-2 transition-all text-left ${
+                  state.format === format
+                    ? "border-primary bg-primary bg-opacity-10"
+                    : "border-border hover:border-muted"
+                }`}
+              >
+                <h3 className="font-semibold text-foreground mb-2">
+                  {info.label}
+                </h3>
+                <p className="text-sm text-muted-foreground mb-3">
+                  {info.description}
+                </p>
+                <div className="space-y-1 text-xs text-muted-foreground">
+                  <p>Max: {info.maxSize}</p>
+                  <p>Duration: {info.maxDuration}</p>
+                </div>
+              </button>
+            ))}
           </div>
         </div>
 
         {/* File Upload */}
         <div className="mb-8">
-          <h2 className="text-xl font-bold text-foreground mb-4">Select Video File</h2>
+          <h2 className="text-xl font-bold text-foreground mb-4">
+            Select Video File
+          </h2>
           <div className="border-2 border-dashed border-border rounded-lg p-8 text-center hover:border-primary transition-colors cursor-pointer bg-card">
             <input
               type="file"
@@ -331,14 +344,18 @@ export default function Upload() {
                 </p>
               </div>
               <div>
-                <p className="text-xs text-muted-foreground mb-1">Time Remaining</p>
+                <p className="text-xs text-muted-foreground mb-1">
+                  Time Remaining
+                </p>
                 <p className="text-sm font-medium text-foreground">
                   {formatTimeRemaining(state.eta)}
                 </p>
               </div>
               <div>
                 <p className="text-xs text-muted-foreground mb-1">Status</p>
-                <p className="text-sm font-medium text-primary">Processing...</p>
+                <p className="text-sm font-medium text-primary">
+                  Processing...
+                </p>
               </div>
             </div>
           </div>
@@ -388,8 +405,13 @@ export default function Upload() {
             <li>✓ Supported formats: MP4, MKV, AVI, MOV, WebM, FLV</li>
             <li>✓ Maximum file size depends on your chosen format</li>
             <li>✓ Videos are automatically processed for optimal streaming</li>
-            <li>✓ Device tracking ensures your videos are saved to your account</li>
-            <li>✓ Use descriptive titles and descriptions for better discoverability</li>
+            <li>
+              ✓ Device tracking ensures your videos are saved to your account
+            </li>
+            <li>
+              ✓ Use descriptive titles and descriptions for better
+              discoverability
+            </li>
           </ul>
         </div>
       </div>
