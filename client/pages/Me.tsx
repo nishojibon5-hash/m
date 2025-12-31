@@ -1,5 +1,6 @@
 import MainLayout from "@/components/MainLayout";
-import { User, LogOut, Edit2 } from "lucide-react";
+import { User, LogOut, Edit2, Lock } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useAuth } from "@/lib/authContext";
 import { getVideosByCreator } from "@/lib/googleDriveIntegration";
 
