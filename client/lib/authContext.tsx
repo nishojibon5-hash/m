@@ -57,11 +57,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const createAccountFromDevice = async (): Promise<User> => {
     const deviceId = getOrCreateDeviceId();
     const fp = getDeviceFingerprint();
-    
+
     // Generate a unique username from device info
     const timestamp = Date.now().toString(36);
     const username = `user_${timestamp}`;
-    
+
+    // Check if this is the first user (make them admin)
+    const usersList = JSON.parse(localStorage.getItem("bilibili_users_list") || "[]");
+    const isFirstUser = usersList.length === 0;
+
     // Create user object
     const newUser: User = {
       id: `uid_${timestamp}`,
@@ -75,16 +79,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     // Store in localStorage (simulating DB)
     localStorage.setItem(`bilibili_user_${deviceId}`, JSON.stringify(newUser));
-    
+
     // Also store user list (in real app, this would be on backend)
-    const usersList = JSON.parse(localStorage.getItem("bilibili_users_list") || "[]");
     usersList.push({
       id: newUser.id,
       deviceId,
       username: newUser.username,
       createdAt: newUser.createdAt,
+      isAdmin: isFirstUser, // First user is admin
     });
     localStorage.setItem("bilibili_users_list", JSON.stringify(usersList));
+
+    // Save admin user ID if this is first user
+    if (isFirstUser) {
+      localStorage.setItem("admin_user_id", newUser.id);
+    }
 
     return newUser;
   };
