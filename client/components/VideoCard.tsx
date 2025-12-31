@@ -1,4 +1,5 @@
 import { MoreVertical } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface VideoCardProps {
   id: string;
@@ -12,6 +13,7 @@ interface VideoCardProps {
 }
 
 export default function VideoCard({
+  id,
   thumbnail,
   title,
   creator,
@@ -21,7 +23,7 @@ export default function VideoCard({
   likes,
 }: VideoCardProps) {
   return (
-    <div className="group cursor-pointer">
+    <Link to={`/watch/${id}`} className="group cursor-pointer block">
       {/* Thumbnail Container */}
       <div className="relative w-full aspect-video rounded-lg overflow-hidden bg-card mb-3">
         <img
@@ -66,10 +68,13 @@ export default function VideoCard({
         </div>
 
         {/* More Menu */}
-        <button className="text-muted-foreground hover:text-foreground opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 h-8 w-8 flex items-center justify-center">
+        <button 
+          onClick={(e) => e.preventDefault()}
+          className="text-muted-foreground hover:text-foreground opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 h-8 w-8 flex items-center justify-center"
+        >
           <MoreVertical className="w-5 h-5" />
         </button>
       </div>
-    </div>
+    </Link>
   );
 }
