@@ -14,6 +14,34 @@ export default function Me() {
     avatar: user?.avatar || "",
   });
 
+  const handleEditOpen = () => {
+    if (user) {
+      setEditForm({
+        username: user.username,
+        avatar: user.avatar,
+      });
+      setEditModalOpen(true);
+    }
+  };
+
+  const handleEditSave = () => {
+    if (!user) return;
+
+    if (editForm.username.trim() === "") {
+      alert("Username cannot be empty");
+      return;
+    }
+
+    const updatedUser = {
+      ...user,
+      username: editForm.username,
+      avatar: editForm.avatar,
+    };
+
+    login(updatedUser);
+    setEditModalOpen(false);
+  };
+
   if (!user) {
     return (
       <MainLayout>
