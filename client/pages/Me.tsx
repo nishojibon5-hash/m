@@ -302,6 +302,90 @@ export default function Me() {
           <LogOut className="w-4 h-4" />
           Logout
         </button>
+
+        {/* Edit Profile Modal */}
+        {editModalOpen && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+            <div className="bg-card rounded-lg p-6 w-full max-w-md border border-border">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl font-bold text-foreground">
+                  Edit Profile
+                </h2>
+                <button
+                  onClick={() => setEditModalOpen(false)}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+
+              <div className="space-y-4">
+                {/* Avatar Section */}
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-3">
+                    Avatar
+                  </label>
+                  <div className="flex items-center gap-4">
+                    <img
+                      src={editForm.avatar}
+                      alt="Avatar"
+                      className="w-16 h-16 rounded-full object-cover border border-border"
+                    />
+                    <div className="flex-1">
+                      <input
+                        type="text"
+                        placeholder="Avatar URL"
+                        value={editForm.avatar}
+                        onChange={(e) =>
+                          setEditForm({
+                            ...editForm,
+                            avatar: e.target.value,
+                          })
+                        }
+                        className="w-full bg-muted text-foreground px-4 py-2 rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Username Section */}
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">
+                    Username
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Enter username"
+                    value={editForm.username}
+                    onChange={(e) =>
+                      setEditForm({
+                        ...editForm,
+                        username: e.target.value,
+                      })
+                    }
+                    className="w-full bg-muted text-foreground px-4 py-2 rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary"
+                  />
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex gap-3 pt-4">
+                  <button
+                    onClick={() => setEditModalOpen(false)}
+                    className="flex-1 px-4 py-2 bg-card text-foreground border border-border rounded-lg font-medium hover:bg-muted transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleEditSave}
+                    className="flex-1 px-4 py-2 bg-primary text-primary-foreground rounded-lg font-medium hover:opacity-90 transition-opacity"
+                  >
+                    Save Changes
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </MainLayout>
   );
