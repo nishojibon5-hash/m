@@ -228,8 +228,22 @@ export default function Watch() {
                       {(video.views / 1000000).toFixed(1)}M subscribers
                     </p>
                   </div>
-                  <button className="px-6 py-2 bg-primary text-primary-foreground rounded-full font-medium hover:opacity-90 transition-opacity">
-                    Subscribe
+                  <button
+                    onClick={handleSubscribe}
+                    className={`px-6 py-2 rounded-full font-medium transition-opacity ${
+                      subscribed
+                        ? "bg-card text-foreground hover:bg-muted border border-border"
+                        : "bg-primary text-primary-foreground hover:opacity-90"
+                    }`}
+                  >
+                    {subscribed ? (
+                      <>
+                        <Bell className="w-4 h-4 inline mr-2" />
+                        Subscribed
+                      </>
+                    ) : (
+                      "Subscribe"
+                    )}
                   </button>
                 </div>
 
