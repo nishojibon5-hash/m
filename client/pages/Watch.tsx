@@ -64,6 +64,74 @@ const VIDEOS_DB: Record<
     uploadedAt: "1 week ago",
     category: "Anime",
   },
+  "3": {
+    id: "3",
+    title: "Latest Gaming Stream - Best Moments",
+    description:
+      "Check out the best highlights from our latest gaming stream. Epic plays, funny moments, and more!",
+    thumbnail:
+      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=225&fit=crop",
+    videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
+    creator: "Gaming Zone",
+    creatorAvatar: "https://i.pravatar.cc/80?img=3",
+    creatorId: "creator_3",
+    views: 890000,
+    likes: 32000,
+    comments: 8900,
+    uploadedAt: "3 days ago",
+    category: "Gaming",
+  },
+  "4": {
+    id: "4",
+    title: "Music Video - Summer Vibes 2024",
+    description:
+      "Experience the summer vibes with this incredible music video. Perfect for relaxing and enjoying good music.",
+    thumbnail:
+      "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=400&h=225&fit=crop",
+    videoUrl: "https://www.w3schools.com/html/movie.mp4",
+    creator: "Music Channel",
+    creatorAvatar: "https://i.pravatar.cc/80?img=4",
+    creatorId: "creator_4",
+    views: 3200000,
+    likes: 156000,
+    comments: 52000,
+    uploadedAt: "5 days ago",
+    category: "Music",
+  },
+  "5": {
+    id: "5",
+    title: "Vlog: Exploring Tokyo Street Food",
+    description:
+      "Join us as we explore the incredible street food scene in Tokyo. From ramen to takoyaki, we try it all!",
+    thumbnail:
+      "https://images.unsplash.com/photo-1489599849228-13a0735276ed?w=400&h=225&fit=crop",
+    videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
+    creator: "Travel Vlog",
+    creatorAvatar: "https://i.pravatar.cc/80?img=5",
+    creatorId: "creator_5",
+    views: 550000,
+    likes: 28000,
+    comments: 6500,
+    uploadedAt: "1 week ago",
+    category: "Travel",
+  },
+  "6": {
+    id: "6",
+    title: "Comedy Shorts - Funniest Moments",
+    description:
+      "Get ready to laugh! Here are the funniest moments from our latest comedy sketches.",
+    thumbnail:
+      "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=400&h=225&fit=crop",
+    videoUrl: "https://www.w3schools.com/html/movie.mp4",
+    creator: "Laugh Out",
+    creatorAvatar: "https://i.pravatar.cc/80?img=6",
+    creatorId: "creator_6",
+    views: 4100000,
+    likes: 189000,
+    comments: 67500,
+    uploadedAt: "2 weeks ago",
+    category: "Comedy",
+  },
 };
 
 const SAMPLE_COMMENTS = [
