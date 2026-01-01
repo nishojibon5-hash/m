@@ -200,7 +200,8 @@ export default function Me() {
                   Admin Access Guide
                 </h2>
                 <p className="text-muted-foreground text-sm mb-4">
-                  You have administrator privileges. Use this guide to navigate admin features.
+                  You have administrator privileges. Use this guide to navigate
+                  admin features.
                 </p>
               </div>
             </div>
@@ -229,31 +230,36 @@ export default function Me() {
                   <li className="flex items-start gap-2">
                     <span className="text-primary mt-1">•</span>
                     <span>
-                      <strong>Content Moderation:</strong> Review and manage user-uploaded content
+                      <strong>Content Moderation:</strong> Review and manage
+                      user-uploaded content
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-primary mt-1">•</span>
                     <span>
-                      <strong>User Management:</strong> View user accounts, activity, and manage permissions
+                      <strong>User Management:</strong> View user accounts,
+                      activity, and manage permissions
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-primary mt-1">•</span>
                     <span>
-                      <strong>Analytics:</strong> View platform statistics, engagement metrics, and reports
+                      <strong>Analytics:</strong> View platform statistics,
+                      engagement metrics, and reports
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-primary mt-1">•</span>
                     <span>
-                      <strong>System Settings:</strong> Configure platform features and policies
+                      <strong>System Settings:</strong> Configure platform
+                      features and policies
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-primary mt-1">•</span>
                     <span>
-                      <strong>Audit Logs:</strong> Monitor admin actions and system events
+                      <strong>Audit Logs:</strong> Monitor admin actions and
+                      system events
                     </span>
                   </li>
                 </ul>
@@ -267,7 +273,8 @@ export default function Me() {
                   <li className="flex items-start gap-2">
                     <span className="text-primary mt-1">✓</span>
                     <span>
-                      Regularly review the audit logs to monitor platform activity
+                      Regularly review the audit logs to monitor platform
+                      activity
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
@@ -285,7 +292,8 @@ export default function Me() {
                   <li className="flex items-start gap-2">
                     <span className="text-primary mt-1">✓</span>
                     <span>
-                      Update system settings as needed to enforce platform policies
+                      Update system settings as needed to enforce platform
+                      policies
                     </span>
                   </li>
                 </ul>
