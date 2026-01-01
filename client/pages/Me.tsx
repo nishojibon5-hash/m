@@ -76,7 +76,10 @@ export default function Me() {
                 </p>
               </div>
             </div>
-            <button className="p-2 rounded-full bg-primary bg-opacity-10 text-primary hover:bg-opacity-20 transition-colors">
+            <button
+              onClick={handleEditOpen}
+              className="p-2 rounded-full bg-primary bg-opacity-10 text-primary hover:bg-opacity-20 transition-colors"
+            >
               <Edit2 className="w-5 h-5" />
             </button>
           </div>
