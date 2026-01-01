@@ -316,10 +316,17 @@ export default function Watch() {
                       rows={2}
                     />
                     <div className="flex justify-end gap-2 mt-2">
-                      <button className="px-4 py-2 text-muted-foreground hover:text-foreground transition-colors">
+                      <button
+                        onClick={() => setCommentText("")}
+                        className="px-4 py-2 text-muted-foreground hover:text-foreground transition-colors"
+                      >
                         Cancel
                       </button>
-                      <button className="px-6 py-2 bg-primary text-primary-foreground rounded-lg font-medium hover:opacity-90 transition-opacity disabled:opacity-50">
+                      <button
+                        onClick={handleCommentSubmit}
+                        disabled={commentText.trim() === ""}
+                        className="px-6 py-2 bg-primary text-primary-foreground rounded-lg font-medium hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
                         Comment
                       </button>
                     </div>
