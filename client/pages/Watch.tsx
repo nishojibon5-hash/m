@@ -1,9 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react";
-import { ThumbsUp, MessageCircle, Share2, MoreVertical } from "lucide-react";
+import { ThumbsUp, MessageCircle, Share2, MoreVertical, Bell } from "lucide-react";
 import MainLayout from "@/components/MainLayout";
 import VideoPlayer from "@/components/VideoPlayer";
 import VideoCard from "@/components/VideoCard";
+import { useAuth } from "@/lib/authContext";
 
 // Sample video data
 const VIDEOS_DB: Record<
