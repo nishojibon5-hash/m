@@ -31,9 +31,9 @@ export default function Admin() {
 
   // Check if user is admin (first user is admin)
   const adminUserId = localStorage.getItem("admin_user_id");
-  const isAdmin = user?.id === adminUserId || user?.id === "admin";
+  const isAdmin = user?.id === adminUserId;
 
-  if (!isAdmin && user?.id !== localStorage.getItem("admin_user_id")) {
+  if (!isAdmin) {
     return (
       <div className="min-h-screen bg-background text-foreground flex flex-col items-center justify-center">
         <div className="text-center">
