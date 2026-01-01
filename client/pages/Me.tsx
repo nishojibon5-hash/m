@@ -153,6 +153,110 @@ export default function Me() {
           </div>
         </div>
 
+        {/* Admin Access Guide */}
+        <div className="mb-8">
+          <div className="bg-gradient-to-r from-primary/20 to-primary/10 border border-primary/30 rounded-lg p-6">
+            <div className="flex items-start gap-3 mb-4">
+              <Lock className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+              <div className="flex-1">
+                <h2 className="text-lg font-bold text-foreground mb-2">
+                  Admin Access Guide
+                </h2>
+                <p className="text-muted-foreground text-sm mb-4">
+                  You have administrator privileges. Use this guide to navigate admin features.
+                </p>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <div className="bg-card/50 rounded-lg p-4 border border-border/50">
+                <h3 className="text-foreground font-semibold text-sm mb-2">
+                  Admin Dashboard
+                </h3>
+                <p className="text-muted-foreground text-sm mb-3">
+                  Access the admin panel to manage the platform.
+                </p>
+                <Link
+                  to="/admin"
+                  className="inline-flex px-3 py-1.5 bg-primary text-primary-foreground rounded text-sm font-medium hover:opacity-90 transition-opacity"
+                >
+                  Go to Admin Panel →
+                </Link>
+              </div>
+
+              <div className="bg-card/50 rounded-lg p-4 border border-border/50">
+                <h3 className="text-foreground font-semibold text-sm mb-2">
+                  Key Admin Features
+                </h3>
+                <ul className="text-muted-foreground text-sm space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    <span>
+                      <strong>Content Moderation:</strong> Review and manage user-uploaded content
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    <span>
+                      <strong>User Management:</strong> View user accounts, activity, and manage permissions
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    <span>
+                      <strong>Analytics:</strong> View platform statistics, engagement metrics, and reports
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    <span>
+                      <strong>System Settings:</strong> Configure platform features and policies
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    <span>
+                      <strong>Audit Logs:</strong> Monitor admin actions and system events
+                    </span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-card/50 rounded-lg p-4 border border-border/50">
+                <h3 className="text-foreground font-semibold text-sm mb-2">
+                  Quick Tips
+                </h3>
+                <ul className="text-muted-foreground text-sm space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1">✓</span>
+                    <span>
+                      Regularly review the audit logs to monitor platform activity
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1">✓</span>
+                    <span>
+                      Use content filters to help identify policy violations
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1">✓</span>
+                    <span>
+                      Check analytics weekly to understand platform trends
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1">✓</span>
+                    <span>
+                      Update system settings as needed to enforce platform policies
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Logout Button */}
         <button
           onClick={logout}
