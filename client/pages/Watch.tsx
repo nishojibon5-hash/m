@@ -335,7 +335,7 @@ export default function Watch() {
 
                 {/* Comments List */}
                 <div className="space-y-6">
-                  {SAMPLE_COMMENTS.map((comment) => (
+                  {comments.map((comment) => (
                     <div key={comment.id} className="flex gap-4">
                       <img
                         src={comment.avatar}
