@@ -255,7 +255,7 @@ export default function Watch() {
               {/* Engagement Stats */}
               <div className="flex items-center gap-4 mb-6">
                 <button
-                  onClick={() => setLiked(!liked)}
+                  onClick={handleLike}
                   className={`flex items-center gap-2 px-4 py-2 rounded-full transition-colors ${
                     liked
                       ? "bg-primary text-primary-foreground"
