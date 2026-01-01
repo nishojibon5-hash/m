@@ -1,12 +1,18 @@
 import MainLayout from "@/components/MainLayout";
-import { User, LogOut, Edit2, Lock } from "lucide-react";
+import { User, LogOut, Edit2, Lock, X } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import { useAuth } from "@/lib/authContext";
 import { getVideosByCreator } from "@/lib/googleDriveIntegration";
 
 export default function Me() {
-  const { user, logout } = useAuth();
+  const { user, logout, login } = useAuth();
   const userVideos = user ? getVideosByCreator(user.id) : [];
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [editForm, setEditForm] = useState({
+    username: user?.username || "",
+    avatar: user?.avatar || "",
+  });
 
   if (!user) {
     return (
