@@ -135,10 +135,54 @@ const RECOMMENDED_VIDEOS = [
 
 export default function Watch() {
   const { videoId } = useParams<{ videoId: string }>();
+  const { user } = useAuth();
   const [liked, setLiked] = useState(false);
+  const [subscribed, setSubscribed] = useState(false);
   const [commentText, setCommentText] = useState("");
+  const [comments, setComments] = useState(SAMPLE_COMMENTS);
 
   const video = videoId ? VIDEOS_DB[videoId] : VIDEOS_DB["1"];
+
+  const handleLike = () => {
+    if (!user) {
+      alert("Please create an account to like videos");
+      return;
+    }
+    setLiked(!liked);
+  };
+
+  const handleSubscribe = () => {
+    if (!user) {
+      alert("Please create an account to subscribe");
+      return;
+    }
+    setSubscribed(!subscribed);
+  };
+
+  const handleCommentSubmit = () => {
+    if (!user) {
+      alert("Please create an account to comment");
+      return;
+    }
+
+    if (commentText.trim() === "") {
+      alert("Please enter a comment");
+      return;
+    }
+
+    const newComment = {
+      id: `${comments.length + 1}`,
+      author: user.username,
+      avatar: user.avatar,
+      text: commentText,
+      likes: 0,
+      replies: 0,
+      timestamp: "now",
+    };
+
+    setComments([newComment, ...comments]);
+    setCommentText("");
+  };
 
   if (!video) {
     return (
